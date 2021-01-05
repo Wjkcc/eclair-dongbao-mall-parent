@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eclair-dongbao-cms-api" />
+        <module name="eclair-dongbao-ums-pai" />
+        <module name="eclair-dongbao-sms-api" />
+        <module name="eclair-dongbao-oms" />
+        <module name="eclair-dongbao-pms" />
+        <module name="eclair-dongbao-sms" />
+        <module name="eclair-dongbao-pms-api" />
+        <module name="eclait-dongbao-common-base" />
+        <module name="ecliar-dongbao-pay" />
+        <module name="eclair-dongbao-cart" />
+        <module name="eclair-dongbao-protal-web" />
+        <module name="eclair-dongbao-dictionary" />
+        <module name="ecliar-dongbao-ums" />
+        <module name="eclair-dongbao-common-util" />
+        <module name="eclair-dongbao-generator" />
+        <module name="eclair-dongbao-pay-api" />
+        <module name="eclair-dongbao-job" />
+        <module name="eclair-dongbao-cms" />
+        <module name="eclair-dongbao-oms-api" />
+        <module name="eclair-dongbao-cart-api" />
+        <module name="eclair-dongbao-application" />
+        <module name="eclair-dongbao-dictionary-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eclair-dongbao-application-api" target="1.5" />
+      <module name="eclair-dongbao-manager-web" target="1.5" />
+      <module name="eclair-dongbao-portal-web" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

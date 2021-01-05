@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>eclair-dongbao-mall-parent</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>eclair-dongbao-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>eclair-dongbao-oms</module>
+        <module>eclair-dongbao-pms</module>
+        <module>ecliar-dongbao-ums</module>
+        <module>ecliar-dongbao-pay</module>
+        <module>eclair-dongbao-cart</module>
+        <module>eclair-dongbao-cms</module>
+        <module>eclair-dongbao-dictionary</module>
+        <module>eclair-dongbao-sms</module>
+        <module>eclair-dongbao-application</module>
+    </modules>
+
+
+</project>

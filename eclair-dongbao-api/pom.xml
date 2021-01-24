@@ -19,7 +19,7 @@
         <module>eclair-dongbao-pms-api</module>
         <module>eclair-dongbao-sms-api</module>
         <module>eclair-dongbao-pay-api</module>
-        <module>eclair-dongbao-ums-pai</module>
+        <module>eclair-dongbao-ums-api</module>
     </modules>
 
 

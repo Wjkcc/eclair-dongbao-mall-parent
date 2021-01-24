@@ -6,20 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eclair-dongbao-cms-api" />
         <module name="eclair-dongbao-ums-pai" />
+        <module name="ecliar-dongbao-ums" />
         <module name="eclair-dongbao-sms-api" />
-        <module name="eclair-dongbao-oms" />
         <module name="eclair-dongbao-pms" />
         <module name="eclair-dongbao-sms" />
         <module name="eclair-dongbao-pms-api" />
         <module name="eclait-dongbao-common-base" />
         <module name="ecliar-dongbao-pay" />
         <module name="eclair-dongbao-cart" />
-        <module name="eclair-dongbao-protal-web" />
+        <module name="eclair-dongbao-cms-api" />
         <module name="eclair-dongbao-dictionary" />
-        <module name="ecliar-dongbao-ums" />
+        <module name="eclair-dongbao-protal-web" />
         <module name="eclair-dongbao-common-util" />
+        <module name="eclair-dongbao-oms" />
         <module name="eclair-dongbao-generator" />
         <module name="eclair-dongbao-pay-api" />
         <module name="eclair-dongbao-job" />
@@ -34,6 +34,34 @@
       <module name="eclair-dongbao-application-api" target="1.5" />
       <module name="eclair-dongbao-manager-web" target="1.5" />
       <module name="eclair-dongbao-portal-web" target="1.5" />
+      <module name="eclair-dongbao-ums-api" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eclair-dongbao-application" options="-parameters" />
+      <module name="eclair-dongbao-cart" options="-parameters" />
+      <module name="eclair-dongbao-cart-api" options="-parameters" />
+      <module name="eclair-dongbao-cms" options="-parameters" />
+      <module name="eclair-dongbao-cms-api" options="-parameters" />
+      <module name="eclair-dongbao-common-util" options="-parameters" />
+      <module name="eclair-dongbao-dictionary" options="-parameters" />
+      <module name="eclair-dongbao-dictionary-api" options="-parameters" />
+      <module name="eclair-dongbao-generator" options="-parameters" />
+      <module name="eclair-dongbao-job" options="-parameters" />
+      <module name="eclair-dongbao-oms" options="-parameters" />
+      <module name="eclair-dongbao-oms-api" options="-parameters" />
+      <module name="eclair-dongbao-pay-api" options="-parameters" />
+      <module name="eclair-dongbao-pms" options="-parameters" />
+      <module name="eclair-dongbao-pms-api" options="-parameters" />
+      <module name="eclair-dongbao-protal-web" options="-parameters" />
+      <module name="eclair-dongbao-sms" options="-parameters" />
+      <module name="eclair-dongbao-sms-api" options="-parameters" />
+      <module name="eclair-dongbao-ums-api" options="-parameters" />
+      <module name="eclair-dongbao-ums-pai" options="-parameters" />
+      <module name="eclait-dongbao-common-base" options="-parameters" />
+      <module name="ecliar-dongbao-pay" options="-parameters" />
+      <module name="ecliar-dongbao-ums" options="-parameters" />
+    </option>
   </component>
 </project>

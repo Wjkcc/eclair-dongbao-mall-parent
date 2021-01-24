@@ -11,5 +11,39 @@
 
     <artifactId>eclair-dongbao-protal-web</artifactId>
 
+    <dependencies>
+<!--        其他模块依赖-->
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>eclair-dongbao-ums-pai</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>ecliar-dongbao-ums</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+<!--        springboot依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </resource>
+    </resources>
+</build>
 
 </project>

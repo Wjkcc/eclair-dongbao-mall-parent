@@ -1,6 +1,7 @@
 package com.eclair.dongbaoums.config;
 
 import com.eclair.dongbaoums.Handler.MyHandler;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2021/1/21 21:26
  **/
 @Configuration
+@MapperScan("com.eclair.dongbaoums.mapper")
 public class MybatisPlusConfiguration{
     @Bean
     public MyHandler myHandler() {

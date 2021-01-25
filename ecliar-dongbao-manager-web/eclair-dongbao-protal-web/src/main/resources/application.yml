@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
+    password: root
     url: jdbc:mysql://localhost:3306/dongbao_mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
@@ -16,6 +16,6 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1
       logic-not-delete-value: 0
-#  mapper-locations:
-#    - classpath*:/com/eclair/dongbaoums/mapper/xml/*.xml
+  mapper-locations:
+    - classpath*:/com/eclair/dongbaoums/mapper/xml/*.xml
 #    - type-aliases-package: com.eclair.dongbaoums.entity

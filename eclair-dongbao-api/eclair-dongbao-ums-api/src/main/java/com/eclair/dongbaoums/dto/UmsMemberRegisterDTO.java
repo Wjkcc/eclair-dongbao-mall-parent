@@ -11,9 +11,10 @@ import lombok.ToString;
 @Data
 @ToString
 public class UmsMemberRegisterDTO {
-    private String userName;
+    private String username;
     private String icon;
     private String password;
     private String nickName;
+    private String email;
 
 }

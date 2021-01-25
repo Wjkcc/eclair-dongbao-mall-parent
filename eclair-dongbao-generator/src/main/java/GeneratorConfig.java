@@ -130,7 +130,7 @@ public class GeneratorConfig {
         GlobalConfig gc = new GlobalConfig();
 
         String separator = File.separator;
-        gc.setOutputDir("E:\\eclair-dongbao-mall-parent\\eclair-dongbao-service\\ecliar-dongbao-ums\\src\\main\\java");
+        gc.setOutputDir("F:\\wjk\\eclair-dongbao-mall-parent\\eclair-dongbao-service\\ecliar-dongbao-ums\\src\\main\\java");
         gc.setAuthor("wjk");
         gc.setOpen(false);//打开目录
         gc.setFileOverride(true);//是否覆盖
@@ -145,7 +145,7 @@ public class GeneratorConfig {
         dsc.setUrl("jdbc:mysql://localhost:3306/dongbao_mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setPassword("root");
         dsc.setDbType(DbType.MYSQL);
 
         mpg.setDataSource(dsc);

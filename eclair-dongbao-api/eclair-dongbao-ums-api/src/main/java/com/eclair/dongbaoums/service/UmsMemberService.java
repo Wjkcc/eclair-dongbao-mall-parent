@@ -1,5 +1,6 @@
 package com.eclair.dongbaoums.service;
 
+import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
 import com.eclair.dongbaoums.entity.UmsMember;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -15,5 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UmsMemberService extends IService<UmsMember> {
 
     String register(UmsMemberRegisterDTO umsMemberRegisterDTO);
+
+    String login(UmsMemberLoginDTO umsMemberLoginDTO);
 
 }

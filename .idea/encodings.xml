@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-cart-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-cms-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-dictionary-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-oms-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-pay-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-pms-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-sms-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eclair-dongbao-api/eclair-dongbao-ums-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-common/eclair-dongbao-common-util/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-common/eclait-dongbao-common-base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eclair-dongbao-generator/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-application/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-cart/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-cms/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-dictionary/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-oms/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-pms/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/eclair-dongbao-sms/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eclair-dongbao-service/ecliar-dongbao-pay/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eclair-dongbao-service/ecliar-dongbao-ums/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ecliar-dongbao-manager-web/eclair-dongbao-job/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ecliar-dongbao-manager-web/eclair-dongbao-protal-web/src/main/java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

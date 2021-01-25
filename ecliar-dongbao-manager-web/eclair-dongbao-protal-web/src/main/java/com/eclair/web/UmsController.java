@@ -1,7 +1,7 @@
 package com.eclair.web;
 
+import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
-import com.eclair.dongbaoums.entity.UmsMember;
 import com.eclair.dongbaoums.service.UmsMemberService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,5 +33,14 @@ public class UmsController {
         Field[] declaredFields = aClass.getDeclaredFields();
 
         return null;
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody UmsMemberLoginDTO umsMemberLoginDTO) {
+        String s = checkNotNull(umsMemberLoginDTO);
+        if (s != null) {
+            return s;
+        }
+        return umsMemberService.login(umsMemberLoginDTO);
     }
 }

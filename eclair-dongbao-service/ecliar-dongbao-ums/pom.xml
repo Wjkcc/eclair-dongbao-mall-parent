@@ -21,6 +21,11 @@
             <artifactId>eclair-dongbao-ums-pai</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>eclait-dongbao-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!-- generate -->
         <dependency>

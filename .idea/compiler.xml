@@ -2,19 +2,20 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eclair-dongbao-ums-pai" />
         <module name="ecliar-dongbao-ums" />
-        <module name="eclair-dongbao-sms-api" />
         <module name="eclair-dongbao-pms" />
+        <module name="eclair-dongbao-sms-api" />
+        <module name="eclair-dongbao-ums-pai" />
+        <module name="eclair-dongbao-application" />
         <module name="eclair-dongbao-sms" />
-        <module name="eclair-dongbao-pms-api" />
         <module name="eclait-dongbao-common-base" />
         <module name="ecliar-dongbao-pay" />
-        <module name="eclair-dongbao-cart" />
+        <module name="eclair-dongbao-dictionary-api" />
         <module name="eclair-dongbao-cms-api" />
         <module name="eclair-dongbao-dictionary" />
         <module name="eclair-dongbao-protal-web" />
@@ -25,9 +26,9 @@
         <module name="eclair-dongbao-job" />
         <module name="eclair-dongbao-cms" />
         <module name="eclair-dongbao-oms-api" />
+        <module name="eclair-dongbao-pms-api" />
+        <module name="eclair-dongbao-cart" />
         <module name="eclair-dongbao-cart-api" />
-        <module name="eclair-dongbao-application" />
-        <module name="eclair-dongbao-dictionary-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

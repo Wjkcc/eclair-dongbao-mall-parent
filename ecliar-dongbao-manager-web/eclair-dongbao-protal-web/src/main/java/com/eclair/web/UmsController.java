@@ -1,5 +1,7 @@
 package com.eclair.web;
 
+import com.baomidou.mybatisplus.extension.api.R;
+import com.eclair.base.result.ResultWrapper;
 import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
 import com.eclair.dongbaoums.service.UmsMemberService;
@@ -20,12 +22,20 @@ public class UmsController {
     @Resource
     UmsMemberService umsMemberService;
     @PostMapping("/addUser")
-    public String register(@RequestBody UmsMemberRegisterDTO umsMemberRegisterDTO) {
+    public ResultWrapper register(@RequestBody UmsMemberRegisterDTO umsMemberRegisterDTO) {
         String s = checkNotNull(umsMemberRegisterDTO);
         if (s != null) {
-            return s;
+            return null;
         }
-        return umsMemberService.register(umsMemberRegisterDTO);
+        String register = umsMemberService.register(umsMemberRegisterDTO);
+        ResultWrapper objectResultWrapper = new ResultWrapper();;
+        if (register.equals("ok")) {
+
+            objectResultWrapper.setMsg("success");
+            return ResultWrapper.success().data(null).build();
+        }
+       objectResultWrapper.setMsg(register);
+        return ResultWrapper.fail().code("400").msg(register).build();
     }
     // 通过反射获取当前类的get方法从而获取参数值，不存在就返回参数error
     private <T> String checkNotNull(T t) {

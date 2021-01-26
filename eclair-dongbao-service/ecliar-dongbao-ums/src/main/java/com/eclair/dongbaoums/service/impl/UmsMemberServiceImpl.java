@@ -11,6 +11,7 @@ import com.eclair.dongbaoums.service.UmsMemberService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -34,6 +35,7 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
      * @return
      */
     @Override
+    @Transactional
     public String register(UmsMemberRegisterDTO umsMemberRegisterDTO) {
         // 查询用户名是否存在
         QueryWrapper<UmsMember> queryWrapper = new QueryWrapper<>();

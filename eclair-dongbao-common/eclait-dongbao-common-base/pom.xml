@@ -7,9 +7,8 @@
         <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
+    <groupId>com.eclair</groupId>
     <artifactId>eclait-dongbao-common-base</artifactId>
-
-
+    <version>1.0</version>
+    <modelVersion>4.0.0</modelVersion>
 </project>

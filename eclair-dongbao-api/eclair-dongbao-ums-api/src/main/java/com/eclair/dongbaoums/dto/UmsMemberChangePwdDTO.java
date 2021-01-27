@@ -4,17 +4,16 @@ package com.eclair.dongbaoums.dto;/**
  **/
 
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @Author
- * @Time 2021/1/25 13:46
+ * @Time 2021/1/27 15:31
  * @Description
  **/
 @Data
-@ToString
-public class UmsMemberLoginDTO {
+public class UmsMemberChangePwdDTO {
+    private Long id;
     private String username;
-    private String password;
-    private String ip;
+    private String oldPwd;
+    private String newPwd;
 }

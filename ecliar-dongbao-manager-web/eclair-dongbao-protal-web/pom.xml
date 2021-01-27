@@ -7,9 +7,11 @@
         <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.eclair</groupId>
     <artifactId>eclair-dongbao-protal-web</artifactId>
+    <version>1.0</version>
 
     <dependencies>
 <!--        其他模块依赖-->
@@ -22,6 +24,12 @@
         <dependency>
             <groupId>com.eclair</groupId>
             <artifactId>ecliar-dongbao-ums</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>eclair-dongbao-common-util</artifactId>
             <version>1.0</version>
         </dependency>
 

@@ -26,7 +26,16 @@
             <artifactId>eclait-dongbao-common-base</artifactId>
             <version>1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>eclair-dongbao-common-util</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.eclair</groupId>
+            <artifactId>eclair-dongbao-protal-web</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- generate -->
         <dependency>
             <groupId>mysql</groupId>

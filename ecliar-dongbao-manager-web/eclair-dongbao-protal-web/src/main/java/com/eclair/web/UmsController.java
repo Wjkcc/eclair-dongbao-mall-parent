@@ -1,6 +1,7 @@
 package com.eclair.web;
 
 import com.baomidou.mybatisplus.extension.api.R;
+import com.eclair.Exception.BusinessException;
 import com.eclair.base.result.ResultWrapper;
 import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.lang.reflect.Field;
 
 /**
@@ -22,10 +24,15 @@ public class UmsController {
     @Resource
     UmsMemberService umsMemberService;
     @PostMapping("/addUser")
-    public ResultWrapper register(@RequestBody UmsMemberRegisterDTO umsMemberRegisterDTO) {
+    public ResultWrapper register(@RequestBody @Valid UmsMemberRegisterDTO umsMemberRegisterDTO) {
         String s = checkNotNull(umsMemberRegisterDTO);
         if (s != null) {
             return null;
+        }
+        try {
+            int i = 1/0;
+        }catch (Exception e) {
+            throw new BusinessException("lllllll");
         }
         String register = umsMemberService.register(umsMemberRegisterDTO);
         ResultWrapper objectResultWrapper = new ResultWrapper();;
@@ -46,11 +53,11 @@ public class UmsController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UmsMemberLoginDTO umsMemberLoginDTO) {
+    public ResultWrapper login(@RequestBody UmsMemberLoginDTO umsMemberLoginDTO) {
         String s = checkNotNull(umsMemberLoginDTO);
         if (s != null) {
-            return s;
+            return ResultWrapper.fail().data(s).build();
         }
-        return umsMemberService.login(umsMemberLoginDTO);
+        return ResultWrapper.success().data(umsMemberService.login(umsMemberLoginDTO)).build();
     }
 }

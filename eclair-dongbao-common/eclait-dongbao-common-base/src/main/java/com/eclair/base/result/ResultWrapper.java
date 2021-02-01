@@ -23,7 +23,7 @@ public class ResultWrapper<T> implements Serializable {
     private T data;
     private String errorMsg;
     public static ResultWrapper.ResultWrapperBuilder success() {
-        return ResultWrapper.builder().code(ResultCode.SUCCESS.getCode()).data(ResultCode.SUCCESS.getMsg());
+        return ResultWrapper.builder().code(ResultCode.SUCCESS.getCode()).msg(ResultCode.SUCCESS.getMsg());
     }
 
     public static ResultWrapper.ResultWrapperBuilder fail() {

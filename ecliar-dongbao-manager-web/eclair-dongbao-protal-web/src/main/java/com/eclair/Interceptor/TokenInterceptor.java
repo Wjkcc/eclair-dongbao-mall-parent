@@ -4,12 +4,13 @@ package com.eclair.Interceptor;/**
  **/
 
 import com.eclair.annotation.Token;
-import com.eclair.config.ValueConfig;
+import com.eclair.base.config.ValueConfig;
 import com.eclair.dto.UmsTokenDTO;
+import com.eclair.message.user.UserUtil;
 import com.eclair.token.JWTUtils;
 import com.eclair.token.Third.AbstractTokenSave;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +28,7 @@ import java.util.Objects;
  * @Description
  **/
 @Component
+@Slf4j
 public class TokenInterceptor implements HandlerInterceptor {
     @Resource
     AbstractTokenSave abstractTokenSave;
@@ -38,19 +40,30 @@ public class TokenInterceptor implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
         //检查是否有Token注解，无则跳过认证
         if (!method.isAnnotationPresent(Token.class)) {
-                return true;
+            log.error("没有token注解，直接返回");
+            return true;
         }
         String token = request.getHeader("assess-token");
         // 校验token
         if (Objects.nonNull(token)) {
-            UmsTokenDTO umsTokenDTO = JWTUtils.decodeToken(token);
+            UmsTokenDTO umsTokenDTO = null;
+            try {
+                 umsTokenDTO = JWTUtils.decodeToken(token);
+            }catch (Exception e) {
+                throw new RuntimeException("token校验失败");
+            }
+
             // 获取token，进行校验
             if (!umsTokenDTO.isEmpty()) {
                 // 校验过期时间
                 // 在线程中添加用户信息
-                if (ValueConfig.exp) {
-                    Boolean aBoolean = abstractTokenSave.checkToken(umsTokenDTO.getUsername());
+                if (!ValueConfig.exp) {
+                    Boolean aBoolean = abstractTokenSave.checkToken(token);
+                    if(!aBoolean) {
+                        throw new RuntimeException("token过期，重新登录");
+                    }
                 }
+                UserUtil.setUser(umsTokenDTO.getUsername());
                 return true;
             }
         }
@@ -61,7 +74,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
+        UserUtil.remove();
     }
 
     @Override

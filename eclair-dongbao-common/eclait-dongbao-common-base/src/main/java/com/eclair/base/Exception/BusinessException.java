@@ -1,4 +1,4 @@
-package com.eclair.Exception;
+package com.eclair.base.Exception;
 
 /**
  * @author

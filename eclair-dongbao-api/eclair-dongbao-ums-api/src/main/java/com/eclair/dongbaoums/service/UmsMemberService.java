@@ -8,6 +8,7 @@ import com.eclair.dongbaoums.dto.UmsMemberUpdateDTO;
 import com.eclair.dongbaoums.entity.UmsMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.eclair.dongbaoums.vo.UmsMemberLoginVO;
+import com.eclair.dongbaoums.vo.UmsMemberVO;
 import org.apache.ibatis.executor.resultset.ResultSetWrapper;
 
 /**
@@ -27,5 +28,9 @@ public interface UmsMemberService extends IService<UmsMember> {
     String changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO);
 
     String updateUser(UmsMemberUpdateDTO umsMemberUpdateDTO);
+
+    ResultWrapper<UmsMemberVO> getUser();
+
+    ResultWrapper loginOut();
 
 }

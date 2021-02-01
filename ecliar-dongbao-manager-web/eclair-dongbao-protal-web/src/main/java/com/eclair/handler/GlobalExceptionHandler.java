@@ -3,7 +3,7 @@ package com.eclair.handler;/**
  * @date
  **/
 
-import com.eclair.Exception.BusinessException;
+import com.eclair.base.Exception.BusinessException;
 import com.eclair.base.result.ResultWrapper;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,9 +1,9 @@
 package com.eclair.dongbaoums.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.eclair.Exception.BusinessException;
+import com.eclair.base.Exception.BusinessException;
+import com.eclair.base.config.ValueConfig;
 import com.eclair.base.result.ResultWrapper;
-import com.eclair.config.ValueConfig;
 import com.eclair.dongbaoums.dto.UmsMemberChangePwdDTO;
 import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
@@ -13,7 +13,10 @@ import com.eclair.dongbaoums.mapper.UmsMemberMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eclair.dongbaoums.service.UmsMemberService;
 import com.eclair.dongbaoums.vo.UmsMemberLoginVO;
+import com.eclair.dongbaoums.vo.UmsMemberVO;
+import com.eclair.message.user.UserUtil;
 import com.eclair.token.JWTUtils;
+import com.eclair.token.Third.AbstractTokenSave;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,6 +38,8 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
     UmsMemberMapper umsMemberMapper;
     @Resource
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Resource
+    AbstractTokenSave abstractTokenSave;
     /**
      * 用户注册功能
      * @param umsMemberRegisterDTO
@@ -85,7 +90,7 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
     public ResultWrapper login(UmsMemberLoginDTO umsMemberLoginDTO) {
         // 先查通过用户名查询用户是否存在
         UmsMember umsMember = umsMemberMapper.selectUmsByUsername(umsMemberLoginDTO.getUsername());
-        if (null != umsMember) {
+        if (null != umsMember && umsMember.getStatus() != 0) {
             String pwd = umsMember.getPassword();
             // 输入密码 和 数据库加密密码
             boolean matches = bCryptPasswordEncoder.matches(umsMemberLoginDTO.getPassword(), pwd);
@@ -93,18 +98,23 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
                 boolean b  = ValueConfig.exp;
                 // 获取token 返回
                 String token = JWTUtils.generateToken(umsMember.getUsername(), umsMemberLoginDTO.getIp(), b);
+                // token加入
+                if (!b) {
+                    abstractTokenSave.addKey(token,umsMember.getUsername());
+                }
                 UmsMemberLoginVO umsMemberLoginVO = new UmsMemberLoginVO();
-                umsMemberLoginVO.setIcon(umsMember.getIcon());
-                umsMemberLoginVO.setNickName(umsMember.getNickName());
-                umsMemberLoginVO.setUsername(umsMember.getUsername());
+                BeanUtils.copyProperties(umsMember,umsMemberLoginVO);
+//                umsMemberLoginVO.setIcon(umsMember.getIcon());
+//                umsMemberLoginVO.setNickName(umsMember.getNickName());
+//                umsMemberLoginVO.setUsername(umsMember.getUsername());
+//                umsMemberLoginVO.setId(umsMember.getId());
                 umsMemberLoginVO.setToken(token);
-                umsMemberLoginVO.setId(umsMember.getId());
                 return ResultWrapper.success().data(umsMemberLoginVO).build();
             }
-            return ResultWrapper.success().data("").build();
+            return ResultWrapper.fail().msg("密码错误").data("").build();
         }
         // 数据库密码和输入密码进行匹配
-        return ResultWrapper.success().data("").build();
+        return ResultWrapper.fail().msg("用户不存在").data("").build();
     }
 
     /**
@@ -114,7 +124,8 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
      */
     @Override
     public String changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO) {
-        // 校验是否非为前用户
+        // 校验是否非当前用户
+        // 暂时未添加此校验
         UmsMember umsMember = umsMemberMapper.selectById(umsMemberChangePwdDTO.getId());
         if (null != umsMember && umsMember.getStatus() == 0) {
             // 校验旧密码
@@ -157,5 +168,23 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
             throw new BusinessException("update error");
         }
         return "update success";
+    }
+
+    @Override
+    public ResultWrapper<UmsMemberVO> getUser() {
+        String user = UserUtil.getUser();
+        UmsMember umsMember = umsMemberMapper.selectUmsByUsername(user);
+        if (umsMember != null || umsMember.getStatus() == 0) {
+            abstractTokenSave.deleteToken(umsMember.getUsername());
+            return ResultWrapper.fail().msg("用户不存在或者失效").build();
+        }
+        UmsMemberVO umsMemberVO = new UmsMemberVO();
+        BeanUtils.copyProperties(umsMember, umsMemberVO);
+        return ResultWrapper.success().data(umsMemberVO).build();
+    }
+
+    @Override
+    public ResultWrapper loginOut() {
+        return null;
     }
 }

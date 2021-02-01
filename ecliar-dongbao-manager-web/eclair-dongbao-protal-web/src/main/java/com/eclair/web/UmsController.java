@@ -1,7 +1,7 @@
 package com.eclair.web;
 
-import com.baomidou.mybatisplus.extension.api.R;
-import com.eclair.Exception.BusinessException;
+import com.eclair.annotation.Token;
+import com.eclair.base.Exception.BusinessException;
 import com.eclair.base.result.ResultWrapper;
 import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
@@ -26,20 +26,21 @@ public class UmsController {
     @PostMapping("/addUser")
     public ResultWrapper register(@RequestBody @Valid UmsMemberRegisterDTO umsMemberRegisterDTO) {
         String s = checkNotNull(umsMemberRegisterDTO);
+        System.out.println(00000);
         if (s != null) {
             return null;
         }
-        try {
-            int i = 1/0;
-        }catch (Exception e) {
-            throw new BusinessException("lllllll");
-        }
+//        try {
+//            int i = 1/0;
+//        }catch (Exception e) {
+//            throw new BusinessException("lllllll");
+//        }
         String register = umsMemberService.register(umsMemberRegisterDTO);
         ResultWrapper objectResultWrapper = new ResultWrapper();;
         if (register.equals("ok")) {
 
             objectResultWrapper.setMsg("success");
-            return ResultWrapper.success().data(null).build();
+            return ResultWrapper.success().build();
         }
        objectResultWrapper.setMsg(register);
         return ResultWrapper.fail().code("400").msg(register).build();
@@ -58,6 +59,6 @@ public class UmsController {
         if (s != null) {
             return ResultWrapper.fail().data(s).build();
         }
-        return ResultWrapper.success().data(umsMemberService.login(umsMemberLoginDTO)).build();
+        return umsMemberService.login(umsMemberLoginDTO);
     }
 }

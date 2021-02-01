@@ -1,4 +1,4 @@
-package com.eclair.config;/**
+package com.eclair.base.config;/**
  * @author
  * @date
  **/

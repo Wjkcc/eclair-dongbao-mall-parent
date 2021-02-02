@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
         String message = e.getMessage();
         return ResultWrapper.fail().data(message).build();
     }
+
+    @ExceptionHandler({Exception.class,})
+    public ResultWrapper allException(Exception e) {
+        String message = e.getMessage();
+        return ResultWrapper.fail().data(message).build();
+    }
 }

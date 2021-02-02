@@ -25,9 +25,9 @@ public interface UmsMemberService extends IService<UmsMember> {
 
     ResultWrapper<UmsMemberLoginVO> login(UmsMemberLoginDTO umsMemberLoginDTO);
 
-    String changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO);
+    ResultWrapper changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO);
 
-    String updateUser(UmsMemberUpdateDTO umsMemberUpdateDTO);
+    ResultWrapper updateUser(UmsMemberUpdateDTO umsMemberUpdateDTO);
 
     ResultWrapper<UmsMemberVO> getUser();
 

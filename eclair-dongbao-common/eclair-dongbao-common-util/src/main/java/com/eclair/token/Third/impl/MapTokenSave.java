@@ -29,11 +29,15 @@ public class MapTokenSave implements AbstractTokenSave {
 
     /**
      * 验证token是否过期
-     * @param key
+     * @param username
      * @return
      */
     @Override
-    public Boolean checkToken(String key) {
+    public Boolean checkToken(String username) {
+        String key = mapUser.get(username);
+        if (key == null) {
+            return false;
+        }
         if (map.get(key) != null) {
             Long expire = map.get(key);
             Long now = System.currentTimeMillis();
@@ -48,14 +52,16 @@ public class MapTokenSave implements AbstractTokenSave {
                 return true;
             }
             // 过期删除，返回false
-            deleteToken(key);
+            deleteToken(username);
         }
         return false;
     }
 
     public void deleteToken(String username) {
         String s = mapUser.get(username);
-        deleteToken(s,username);
+        if (s!=null) {
+            deleteToken(s,username);
+        }
     }
 
     @Override

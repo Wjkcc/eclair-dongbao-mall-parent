@@ -100,6 +100,8 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
                 String token = JWTUtils.generateToken(umsMember.getUsername(), umsMemberLoginDTO.getIp(), b);
                 // token加入
                 if (!b) {
+                    // 防止多次登录多个token
+                    abstractTokenSave.deleteToken(umsMember.getUsername());
                     abstractTokenSave.addKey(token,umsMember.getUsername());
                 }
                 UmsMemberLoginVO umsMemberLoginVO = new UmsMemberLoginVO();
@@ -123,11 +125,18 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
      * @return
      */
     @Override
-    public String changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO) {
+    public ResultWrapper changePassword(UmsMemberChangePwdDTO umsMemberChangePwdDTO) {
         // 校验是否非当前用户
+        if (!checkUser(umsMemberChangePwdDTO.getUsername())) {
+            throw new RuntimeException("用户校验失败");
+        }
         // 暂时未添加此校验
         UmsMember umsMember = umsMemberMapper.selectById(umsMemberChangePwdDTO.getId());
-        if (null != umsMember && umsMember.getStatus() == 0) {
+        if (null != umsMember && umsMember.getStatus() == 1) {
+            // 校验是否非当前用户
+            if (!checkUser(umsMember.getUsername())) {
+                throw new RuntimeException("用户校验失败");
+            }
             // 校验旧密码
             boolean matches = bCryptPasswordEncoder.matches(umsMemberChangePwdDTO.getOldPwd(), umsMember.getPassword());
             if (matches) {
@@ -140,10 +149,20 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
                 if (i < 1) {
                     throw new BusinessException("update error");
                 }
-                return "update success";
+                // 修改密码后重新登录
+                abstractTokenSave.deleteToken(umsMember.getUsername());
+                return ResultWrapper.success().build();
             }
         }
-        return "user is not exit";
+        return ResultWrapper.fail().msg("user is not exit or pwd is wrong").build();
+    }
+    // 校验是否为当前用户
+    private boolean checkUser(String username) {
+        String user = UserUtil.getUser();
+      if (user.equals(username)) {
+          return true;
+      }
+      return false;
     }
 
     /**
@@ -152,29 +171,31 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
      * @return
      */
     @Override
-    public String updateUser(UmsMemberUpdateDTO umsMemberUpdateDTO) {
+    public ResultWrapper updateUser(UmsMemberUpdateDTO umsMemberUpdateDTO) {
+        UmsMember umsMember1 = umsMemberMapper.selectById(umsMemberUpdateDTO.getId());
+        if (!umsMember1.getUsername().equals(UserUtil.getUser())) {
+            throw new RuntimeException("用户校验失败");
+        }
         if (umsMemberUpdateDTO.getUsername() != null && umsMemberUpdateDTO.getUsername().trim().length() != 0) {
             // 先查通过用户名查询用户是否存在
           if(checkUsername(umsMemberUpdateDTO.getUsername())) {
-              return "username is exit";
+              return ResultWrapper.fail().msg("username is exit").build() ;
           }
         }
-        // 校验用户信息
-
         UmsMember umsMember = new UmsMember();
         BeanUtils.copyProperties(umsMemberUpdateDTO,umsMember);
         int i = umsMemberMapper.updateById(umsMember);
         if (i < 1) {
             throw new BusinessException("update error");
         }
-        return "update success";
+        return ResultWrapper.success().build() ;
     }
 
     @Override
-    public ResultWrapper<UmsMemberVO> getUser() {
+    public ResultWrapper getUser() {
         String user = UserUtil.getUser();
         UmsMember umsMember = umsMemberMapper.selectUmsByUsername(user);
-        if (umsMember != null || umsMember.getStatus() == 0) {
+        if (umsMember == null || umsMember.getStatus() == 0) {
             abstractTokenSave.deleteToken(umsMember.getUsername());
             return ResultWrapper.fail().msg("用户不存在或者失效").build();
         }
@@ -185,6 +206,8 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
 
     @Override
     public ResultWrapper loginOut() {
-        return null;
+        String user = UserUtil.getUser();
+        abstractTokenSave.deleteToken(user);
+        return ResultWrapper.success().build();
     }
 }

@@ -53,21 +53,20 @@ public class TokenInterceptor implements HandlerInterceptor {
                 throw new RuntimeException("token校验失败");
             }
 
-            // 获取token，进行校验
+            // 获取token，时间校验
             if (!umsTokenDTO.isEmpty()) {
                 // 校验过期时间
-                // 在线程中添加用户信息
                 if (!ValueConfig.exp) {
-                    Boolean aBoolean = abstractTokenSave.checkToken(token);
+                    Boolean aBoolean = abstractTokenSave.checkToken(umsTokenDTO.getUsername());
                     if(!aBoolean) {
                         throw new RuntimeException("token过期，重新登录");
                     }
                 }
+                // 在线程中添加用户信息
                 UserUtil.setUser(umsTokenDTO.getUsername());
                 return true;
             }
         }
-        System.out.println(11111);
         response.getWriter().println("token 不存在或者失效");
         return false;
     }

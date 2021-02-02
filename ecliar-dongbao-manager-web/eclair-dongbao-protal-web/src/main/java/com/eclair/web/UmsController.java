@@ -1,11 +1,13 @@
 package com.eclair.web;
 
 import com.eclair.annotation.Token;
-import com.eclair.base.Exception.BusinessException;
 import com.eclair.base.result.ResultWrapper;
+import com.eclair.dongbaoums.dto.UmsMemberChangePwdDTO;
 import com.eclair.dongbaoums.dto.UmsMemberLoginDTO;
 import com.eclair.dongbaoums.dto.UmsMemberRegisterDTO;
+import com.eclair.dongbaoums.dto.UmsMemberUpdateDTO;
 import com.eclair.dongbaoums.service.UmsMemberService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,5 +62,37 @@ public class UmsController {
             return ResultWrapper.fail().data(s).build();
         }
         return umsMemberService.login(umsMemberLoginDTO);
+    }
+
+    @PostMapping("/updatePwd")
+    @Token
+    public ResultWrapper updatePwd(@RequestBody UmsMemberChangePwdDTO umsMemberChangePwdDTO) {
+        String s = checkNotNull(umsMemberChangePwdDTO);
+        if (s != null) {
+            return ResultWrapper.fail().data(s).build();
+        }
+        return umsMemberService.changePassword(umsMemberChangePwdDTO);
+    }
+
+    @PostMapping("/update")
+    @Token
+    public ResultWrapper update(@RequestBody UmsMemberUpdateDTO umsMemberUpdateDTO) {
+        String s = checkNotNull(umsMemberUpdateDTO);
+        if (s != null) {
+            return ResultWrapper.fail().data(s).build();
+        }
+        return umsMemberService.updateUser(umsMemberUpdateDTO);
+    }
+
+    @GetMapping("/getUser")
+    @Token
+    public ResultWrapper getUser() {
+        return umsMemberService.getUser();
+    }
+
+    @PostMapping("/loginOut")
+    @Token
+    public ResultWrapper loginOut() {
+        return umsMemberService.loginOut();
     }
 }

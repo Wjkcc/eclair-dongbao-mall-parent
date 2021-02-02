@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @Description
  **/
 public class UserUtil {
-    private static ThreadLocal<String> userMessage;
+    private static ThreadLocal<String> userMessage = new ThreadLocal<>();
     public static String getUser() {
         return userMessage.get();
     }

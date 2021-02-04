@@ -9,6 +9,7 @@ import com.eclair.dto.UmsTokenDTO;
 import com.eclair.message.user.UserUtil;
 import com.eclair.token.JWTUtils;
 import com.eclair.token.Third.AbstractTokenSave;
+import javafx.animation.ScaleTransition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -35,7 +36,12 @@ public class TokenInterceptor implements HandlerInterceptor {
     // 校验方法是否需要@Token注解，获取贴可能进行校验
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        HandlerMethod handlerMethod = null;
+        try{
+            handlerMethod = (HandlerMethod) handler;
+        }catch (ClassCastException e) {
+            return true;
+        }
         System.out.println(2222);
         Method method = handlerMethod.getMethod();
         //检查是否有Token注解，无则跳过认证

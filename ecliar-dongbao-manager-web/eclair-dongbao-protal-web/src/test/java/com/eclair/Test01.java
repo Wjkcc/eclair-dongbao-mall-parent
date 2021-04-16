@@ -22,7 +22,7 @@ public class Test01 {
         ITesseract iTesseract = new Tesseract();
         // 添加语言包
         iTesseract.setDatapath("F:\\tessdata");
-        iTesseract.setLanguage();
+//        iTesseract.setLanguage();
 
         File f = new File("F:\\tessdata\\generate.jfif");
         try {

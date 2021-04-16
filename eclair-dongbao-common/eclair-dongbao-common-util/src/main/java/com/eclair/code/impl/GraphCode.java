@@ -27,17 +27,35 @@ import java.util.Random;
 @Data
 public class GraphCode implements AbstractCode {
 
-    private String code;
+    private  String code;
 
-    private String picFormat = "jpeg";
+    private  String picFormat = "jpeg";
 
-    private InputStream image;
+    private  InputStream image;
 
-    private Integer high = 100;
+    private  Integer high = 100;
 
-    private Integer width = 400;
+    private  Integer width = 400;
+
+    private static GraphCode instance;
+
+    static {
+        instance = new GraphCode();
+    }
 
     private GraphCode() {
+        System.out.println("init");
+    }
+    @Override
+    public  String getName() {
+        return "graphCode";
+    }
+
+    public static GraphCode getInstance() {
+        return instance;
+    }
+
+    public synchronized void doWork() {
         // 图形缓冲，用于生成图形
         BufferedImage bufferedImage = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
         // 画笔
@@ -74,12 +92,5 @@ public class GraphCode implements AbstractCode {
         }
         setImage(inputStream);
     }
-    @Override
-    public  String getName() {
-        return "graphCode";
-    }
 
-    public static GraphCode getInstance() {
-        return new GraphCode();
-    }
 }

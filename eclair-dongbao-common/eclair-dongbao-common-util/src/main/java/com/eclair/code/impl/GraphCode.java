@@ -4,6 +4,7 @@ package com.eclair.code.impl;/**
  **/
 
 import com.eclair.code.AbstractCode;
+
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import lombok.Data;
 
@@ -12,10 +13,7 @@ import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Random;
 
 /**
@@ -86,7 +84,7 @@ public class GraphCode implements AbstractCode {
             ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(outputStream);
             ImageIO.write(bufferedImage,picFormat,imageOutputStream);
 
-            inputStream = new ByteArrayInputStream(outputStream.getBytes());
+            inputStream = new ByteArrayInputStream(outputStream.toByteArray());
         } catch (Exception e) {
             e.printStackTrace();
         }

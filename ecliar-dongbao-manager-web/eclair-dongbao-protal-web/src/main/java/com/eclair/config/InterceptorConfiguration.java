@@ -24,6 +24,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor).addPathPatterns("/**")
-                .excludePathPatterns("/code/**");;
+                .excludePathPatterns("/code/**")
+                .excludePathPatterns("/jcaptcha/**");
+
     }
 }

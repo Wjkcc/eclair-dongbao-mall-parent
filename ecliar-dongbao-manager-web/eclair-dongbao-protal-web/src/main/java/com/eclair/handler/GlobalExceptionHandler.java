@@ -3,6 +3,8 @@ package com.eclair.handler;/**
  * @date
  **/
 
+import com.baomidou.kaptcha.exception.KaptchaIncorrectException;
+import com.baomidou.kaptcha.exception.KaptchaNotFoundException;
 import com.eclair.base.Exception.BusinessException;
 import com.eclair.base.result.ResultWrapper;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,6 +26,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({Exception.class,})
     public ResultWrapper allException(Exception e) {
+        e.printStackTrace();
+        if (e instanceof KaptchaIncorrectException) {
+            return ResultWrapper.fail().data("code is incorrect").build();
+        }
+        if (e instanceof KaptchaNotFoundException) {
+            return ResultWrapper.fail().data("code is expire").build();
+        }
         String message = e.getMessage();
         return ResultWrapper.fail().data(message).build();
     }

@@ -41,14 +41,14 @@ public class JcaptchaCode implements AbstractCode {
      */
     private static  ImageCaptchaService getImageCaptchaService() {
         // 背景生成
-        UniColorBackgroundGenerator uniColorBackgroundGenerator = new UniColorBackgroundGenerator(100,50);
+        UniColorBackgroundGenerator uniColorBackgroundGenerator = new UniColorBackgroundGenerator(120,60);
         int[] color = {0,255};
         // 随机颜色生成
         RandomRangeColorGenerator randomRangeColorGenerator = new RandomRangeColorGenerator(color,color,color);
         // 字体生成 最小字体数量和最大数量 字体颜色
-        RandomTextPaster randomTextPaster = new RandomTextPaster(4,5, Color.black);
+        RandomTextPaster randomTextPaster = new RandomTextPaster(4,4, Color.black);
         // 字体大小 最大最小
-        RandomFontGenerator randomFontGenerator = new RandomFontGenerator(20,40);
+        RandomFontGenerator randomFontGenerator = new RandomFontGenerator(20,35);
         // 组装图像 字体 背景 字
         ComposedWordToImage composedWordToImage = new ComposedWordToImage(randomFontGenerator,uniColorBackgroundGenerator,randomTextPaster);
         // 生成随机字符串

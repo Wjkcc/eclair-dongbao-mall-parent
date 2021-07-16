@@ -61,7 +61,12 @@ public class JcaptchaController {
     }
     @GetMapping("/verifyCode")
     public ResultWrapper verifyCode(String code, HttpServletRequest request) {
-     return null;
+        final String id = request.getSession().getId();
+        final Boolean aBoolean = JcaptchaCode.getService().validateResponseForID(id, code);
+        if (aBoolean) {
+            return ResultWrapper.success().build();
+        }
+        return ResultWrapper.fail().build();
     }
 
 }

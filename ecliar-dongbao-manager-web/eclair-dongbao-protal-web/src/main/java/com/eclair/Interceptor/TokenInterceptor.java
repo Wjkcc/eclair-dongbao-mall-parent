@@ -49,7 +49,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             log.error("没有token注解，直接返回");
             return true;
         }
-        String token = request.getHeader("assess-token");
+        String token = request.getHeader("access-token");
         // 校验token
         if (Objects.nonNull(token)) {
             UmsTokenDTO umsTokenDTO = null;
